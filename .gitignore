@@ -1,0 +1,5 @@
+desktop-preview.png
+mobile-*.png
+smoke.cjs
+node_modules/
+*.log
