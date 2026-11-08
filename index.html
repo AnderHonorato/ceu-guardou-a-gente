@@ -1,195 +1,124 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#10142c" />
-  <meta name="description" content="Um pedacinho do nosso universo. Para Lil, com amor, Ander." />
-  <meta property="og:title" content="O céu guardou a gente ✦ Ander & Lil" />
-  <meta property="og:description" content="Tem uma surpresa esperando por você, meu amor." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://ceu-guardou-a-gente.vercel.app/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <title>O céu guardou a gente — Ander & Lil</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,400,35,1;9..144,600,35,1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1d2737">
+<meta name="description" content="Uma aventura 2D feita para o Lil: seis pedacinhos de uma história que começou em 8 de junho.">
+<meta property="og:title" content="PEQUENOS INFINITOS — Ander & Lil">
+<meta property="og:description" content="Cinco meses de nós. Uma cidade inteira para explorar. Entre e jogue 💛">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://ceu-guardou-a-gente.vercel.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<title>Pequenos Infinitos • Ander & Lil</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Pixelify+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="script.js" defer></script>
 </head>
 <body>
-  <div class="film-grain" aria-hidden="true"></div>
-  <div class="stars" id="stars" aria-hidden="true"></div>
-  <header class="topbar">
-    <div class="brand"><span class="tiny-star">✦</span> A <span class="brand-line"></span> L</div>
-    <div class="chapter-indicator" id="chapterIndicator">um presente para você</div>
-    <button class="sound-button" id="soundButton" type="button" aria-label="Ativar sons" title="Ativar ou desativar sons">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z" /><path class="sound-wave" d="M16 9a5 5 0 0 1 0 6m2-9a9 9 0 0 1 0 12" /></svg>
-    </button>
-  </header>
-  <div class="progress" aria-label="Progresso da história"><span id="progressBar"></span></div>
+<div class="game-shell" id="shell">
+  <canvas id="world" aria-label="Jogo de aventura em 2D. Use as setas ou o toque para andar; aperte E ou o botão Interagir." tabindex="0"></canvas>
+  <div class="film" aria-hidden="true"></div>
 
-  <!-- Reusable illustrated characters. No externally generated images. -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <defs>
-      <symbol id="person-ander" viewBox="0 0 110 158">
-        <ellipse cx="55" cy="152" rx="29" ry="5" fill="#0d1025" opacity=".4"/>
-        <path d="M34 103Q19 111 22 145L41 147L49 118L63 118L72 146L91 145Q90 115 77 102Z" fill="#262c4b"/>
-        <path d="M35 143h17v9H31q-3-5 4-9m25 0h17l5 9H59z" fill="#191a2e"/>
-        <path d="M36 76Q29 88 25 108l14 8 10-27m26-12q10 9 13 26l-13 12-11-24" fill="#d49876" stroke="#bb765e" stroke-width="1"/>
-        <path d="M32 91Q56 81 78 91L85 117L26 117Z" fill="#eac3a2"/>
-        <path d="M40 104v20m32-20v20" stroke="#cc977d" stroke-width="3" stroke-linecap="round"/>
-        <path d="M32 72Q24 60 29 41Q30 19 55 20Q81 21 82 45L78 73Q71 90 55 96Q39 91 32 72Z" fill="#dba080"/>
-        <path d="M29 51Q22 25 49 19Q77 14 85 43L84 54L79 47L35 47L31 58Z" fill="#181c28"/>
-        <path d="M23 39Q24 17 56 14Q84 14 90 37L90 45H21Z" fill="#151a28"/>
-        <path d="M23 39Q46 33 90 40L101 49Q76 51 20 47Z" fill="#202535"/>
-        <path d="M42 66q4-3 8 0m13 0q4-3 8 0" fill="none" stroke="#30212a" stroke-width="2.7" stroke-linecap="round"/>
-        <path d="M40 78q3 12 15 13q12-1 16-13q-7 4-15 4q-9 0-16-4Z" fill="#27252b"/>
-        <path d="M47 80q9 4 17 0m-11 6q3 2 6 0" stroke="#b77961" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <circle cx="30" cy="69" r="4" fill="#d69a7c"/><circle cx="81" cy="69" r="4" fill="#d69a7c"/>
-        <path d="M34 99Q55 108 76 99" fill="none" stroke="#e5b394" stroke-width="5"/>
-      </symbol>
-      <symbol id="person-lil" viewBox="0 0 110 158">
-        <ellipse cx="55" cy="152" rx="29" ry="5" fill="#0d1025" opacity=".4"/>
-        <path d="M36 105Q22 116 23 145L43 146L48 121L63 121L71 146L91 144Q88 113 76 103Z" fill="#b06a7c"/>
-        <path d="M34 143h19v9H31q-3-5 3-9m26 0h17l5 9H59z" fill="#2b253b"/>
-        <path d="M36 84Q27 93 26 108L36 115L48 91m25-7q11 9 13 25l-10 8-13-27" fill="#ecc1a3"/>
-        <path d="M33 91Q55 81 78 91L86 117H25Z" fill="#f1d9bd"/>
-        <path d="M32 73Q26 48 35 33Q46 17 60 19Q80 22 82 44L80 72Q72 91 55 97Q38 90 32 73Z" fill="#f0c6a9"/>
-        <path d="M28 51Q18 42 26 31l10 3Q37 17 50 22Q52 11 66 19Q82 15 88 29Q95 42 82 58L76 45Q64 49 55 39Q45 49 31 49Z" fill="#eed19a"/>
-        <path d="M27 42Q33 22 48 27m10-4q14 0 20 14" fill="none" stroke="#fce7bb" stroke-width="5" stroke-linecap="round"/>
-        <path d="M41 67q4-3 9 0m13 0q5-3 9 0" fill="none" stroke="#5b3e3c" stroke-width="2.7" stroke-linecap="round"/>
-        <path d="M49 81q6 5 13 0" stroke="#ac716a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <ellipse cx="40" cy="76" rx="7" ry="3" fill="#e99d96" opacity=".6"/><ellipse cx="73" cy="76" rx="7" ry="3" fill="#e99d96" opacity=".6"/>
-        <circle cx="30" cy="68" r="4" fill="#efc1a4"/><circle cx="81" cy="69" r="4" fill="#efc1a4"/>
-      </symbol>
-    </defs>
-  </svg>
+  <div class="hud" id="hud" hidden>
+    <div class="hud-left">
+      <div class="series-mark">ANDER <span>×</span> LIL</div>
+      <div class="hud-title"><span class="chapter-kicker" id="chapterLabel">CAP. 01</span><strong id="chapterName">O começo</strong></div>
+    </div>
+    <div class="hud-right">
+      <div class="month-chip" id="monthChip">JUN 2026</div>
+      <div class="stamp-track" aria-label="Lembranças coletadas" id="stampTrack"></div>
+      <button id="soundToggle" class="sound-toggle" type="button" aria-label="Ativar efeitos sonoros" title="Ativar ou desativar efeitos sonoros"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16 8a6 6 0 0 1 0 8"/></svg></button>
+    </div>
+  </div>
 
-  <main id="app">
-    <!-- Intro -->
-    <section class="scene scene-intro is-active" data-scene="0" aria-label="Início da surpresa">
-      <div class="orb halo moon intro-moon"></div>
-      <div class="skyline skyline-back" aria-hidden="true"></div>
-      <div class="skyline skyline-front" aria-hidden="true"></div>
-      <div class="meteor meteor-one" aria-hidden="true"></div>
-      <div class="meteor meteor-two" aria-hidden="true"></div>
-      <div class="intro-content">
-        <p class="eyebrow reveal">08 de novembro de 2026 <span>✦</span> 5 meses</p>
-        <h1 class="intro-title reveal">O céu<br><em>guardou</em><br>a gente<span class="punct">.</span></h1>
-        <p class="intro-subtitle reveal">Tem histórias que o tempo não consegue medir.<br>Esta é a nossa.</p>
-        <button class="primary-cta reveal" data-next type="button"><span>Descobrir nossa história</span><span class="cta-arrow">↗</span></button>
-      </div>
-      <div class="intro-couple" aria-hidden="true">
-        <div class="char-wrap ander"><svg class="character"><use href="#person-ander"/></svg></div>
-        <div class="glow-heart">♥</div>
-        <div class="char-wrap lil"><svg class="character"><use href="#person-lil"/></svg></div>
-      </div>
-      <div class="ground-line"></div>
-      <div class="bottom-prompt">feito só para o Lil <span>✳</span> com amor, Ander</div>
-    </section>
+  <div class="objective" id="objective" hidden>
+    <span class="objective-diamond">◆</span>
+    <div><small id="objectiveMini">SUA MISSÃO</small><p id="objectiveText">Explore a cidade</p></div>
+  </div>
 
-    <!-- Firefly discovery -->
-    <section class="scene scene-fireflies" data-scene="1" aria-label="As primeiras luzes">
-      <div class="orb scene-moon"></div>
-      <div class="far-mountains" aria-hidden="true"></div>
-      <div class="near-mountains" aria-hidden="true"></div>
-      <div class="scene-heading">
-        <p class="eyebrow">capítulo 01 <span>✦</span> 08.06.2026</p>
-        <h2>Foi bonito<br><em>te encontrar.</em></h2>
-        <p class="scene-intro-text">Algumas luzes só aparecem quando a pessoa certa chega. Toque nas três luzinhas para descobrir.</p>
-      </div>
-      <div class="firefly-world" id="fireflyWorld">
-        <button class="firefly f1" data-firefly="0" aria-label="Acender primeira luz"><span>✦</span></button>
-        <button class="firefly f2" data-firefly="1" aria-label="Acender segunda luz"><span>✦</span></button>
-        <button class="firefly f3" data-firefly="2" aria-label="Acender terceira luz"><span>✦</span></button>
-        <div class="world-couple">
-          <svg class="character"><use href="#person-ander"/></svg>
-          <svg class="character"><use href="#person-lil"/></svg>
-        </div>
-      </div>
-      <div class="chapter-footer">
-        <div class="memory-message" id="fireflyMessage" aria-live="polite">✧ 0 de 3 luzes acesas</div>
-        <button class="secondary-cta" id="fireflyNext" disabled type="button">Continuar nossa viagem <span>→</span></button>
-      </div>
-    </section>
+  <div class="interaction-hint" id="interactionHint" hidden><kbd>E</kbd><span id="hintText">Interagir</span></div>
 
-    <!-- The heart-distance gesture -->
-    <section class="scene scene-closer" data-scene="2" aria-label="O dia em que viramos nós">
-      <div class="closer-rays" aria-hidden="true"></div>
-      <div class="scene-heading">
-        <p class="eyebrow">capítulo 02 <span>✦</span> 08.07.2026</p>
-        <h2>De repente,<br>era <em>nós dois.</em></h2>
-        <p class="scene-intro-text">Um mês do nosso começo e tanta vontade de continuar caminhando juntinhos.</p>
-      </div>
-      <div class="closeness-stage" id="closenessStage">
-        <div class="joining-orbit" aria-hidden="true"></div>
-        <div class="stage-hearts" id="stageHearts" aria-hidden="true"></div>
-        <div class="join-character join-ander"><svg class="character"><use href="#person-ander"/></svg><span>Ander</span></div>
-        <div class="join-character join-lil"><svg class="character"><use href="#person-lil"/></svg><span>Lil</span></div>
-        <div class="joined-caption" id="joinedCaption">♥ E eu escolheria você de novo.</div>
-      </div>
-      <div class="chapter-footer closer-footer">
-        <label class="touch-label" for="closeness">Deslize e aproxime a gente <span aria-hidden="true">♡ → ♥</span></label>
-        <input id="closeness" class="closeness-range" type="range" min="0" max="100" value="0" aria-label="Aproxime Ander e Lil" />
-        <button class="secondary-cta" id="closerNext" disabled type="button">Ver o que vem depois <span>→</span></button>
-      </div>
-    </section>
+  <div class="controls" id="controls" hidden>
+    <div class="direction-pad">
+      <button id="moveLeft" type="button" aria-label="Andar para esquerda"><svg viewBox="0 0 24 24"><path d="m15 4-8 8 8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg></button>
+      <button id="moveRight" type="button" aria-label="Andar para direita"><svg viewBox="0 0 24 24"><path d="m9 4 8 8-8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg></button>
+    </div>
+    <button id="actionButton" class="action-button" type="button" aria-label="Interagir com objeto próximo"><span>✦</span> INTERAGIR</button>
+  </div>
 
-    <!-- Present time -->
-    <section class="scene scene-today" data-scene="3" aria-label="Cinco meses de nós">
-      <div class="sunrise" aria-hidden="true"></div>
-      <div class="hills hills-back"></div>
-      <div class="hills hills-front"></div>
-      <div class="scene-heading">
-        <p class="eyebrow">capítulo 03 <span>✦</span> 08.11.2026</p>
-        <h2>Cinco meses.<br><em>Infinitas razões.</em></h2>
-        <p class="scene-intro-text">Tem coisas pequenas que viram meu mundo inteiro quando são com você.</p>
+  <div class="opening overlay active" id="opening" role="dialog" aria-labelledby="openingTitle" aria-modal="true">
+    <div class="opening-paper">
+      <div class="ticket-head"><span>UM JOGUINHO DE VERDADE</span><span>EDIÇÃO 08.11.26</span></div>
+      <p class="opening-kicker"><span>✳</span> UMA AVENTURA PEQUENA SOBRE UM AMOR IMENSO</p>
+      <h1 id="openingTitle">Pequenos<br><em>infinitos.</em></h1>
+      <p class="opening-sub">Se o nosso amor fosse um lugar, ele não estaria em nenhum mapa.<br>Mas talvez a gente conseguisse encontrá-lo <b>jogando.</b></p>
+      <div class="opening-figures">
+        <div class="avatar-medal"><canvas class="face-portrait" data-face="ander" width="88" height="88" aria-label="Ander, barba e boné preto"></canvas><span>ANDER</span></div>
+        <div class="x-mark">+</div>
+        <div class="avatar-medal"><canvas class="face-portrait" data-face="lil" width="88" height="88" aria-label="Lil, cabelo loiro"></canvas><span>LIL</span></div>
       </div>
-      <div class="petal-scene" id="petalScene" aria-hidden="true">
-        <div class="silhouette-couple"><svg class="character"><use href="#person-ander"/></svg><svg class="character"><use href="#person-lil"/></svg></div>
-      </div>
-      <div class="reasons-wrap">
-        <p class="reason-heading">Toque nos pedacinhos deste amor <span id="reasonsCount">0/3</span></p>
-        <div class="reasons">
-          <button class="reason" data-reason="0" type="button"><span class="reason-icon">☼</span><span>Seu sorriso</span></button>
-          <button class="reason" data-reason="1" type="button"><span class="reason-icon">✳</span><span>Nosso carinho</span></button>
-          <button class="reason" data-reason="2" type="button"><span class="reason-icon">☾</span><span>Nossos futuros</span></button>
-        </div>
-        <p class="reason-text" id="reasonText" aria-live="polite">Cada detalhe vale a pena guardar.</p>
-        <button class="secondary-cta final-open" id="todayNext" disabled type="button">Abrir meu presente para você <span>✦</span></button>
-      </div>
-    </section>
+      <p class="opening-meta">08.06.2026 → 08.11.2026 <span>•</span> CINCO MESES JUNTOS</p>
+      <button class="start-game" id="startButton" type="button">COMEÇAR NOSSA AVENTURA <span>→</span></button>
+      <p class="opening-help">Ande com as setas ou toque na tela · Interaja com os objetos · Colete 5 memórias</p>
+    </div>
+  </div>
 
-    <!-- Finale -->
-    <section class="scene scene-finale" data-scene="4" aria-label="Carta para o Lil">
-      <div class="finale-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
-      <div class="finale-content">
-        <div class="finale-emblem" id="finaleEmblem" aria-hidden="true">
-          <svg class="character"><use href="#person-ander"/></svg>
-          <span class="emblem-heart">♥</span>
-          <svg class="character"><use href="#person-lil"/></svg>
-        </div>
-        <p class="eyebrow">uma última coisinha...</p>
-        <h2>Para você,<br><em>meu Lil.</em></h2>
-        <div class="letter" id="letter">
-          <p>Desde 8 de junho, o mundo tem um detalhe a mais que eu não quero perder: <strong>você nele.</strong></p>
-          <p>Hoje fazemos cinco meses de namoro. Não significa que tudo seja sempre perfeito, mas significa que, entre tantos dias e caminhos, <strong>eu continuo querendo viver os meus ao seu lado.</strong></p>
-          <p>Quero mais risadas bobas, abraços demorados, passeios sem pressa e mil coisas que a gente ainda nem imagina.</p>
-          <p>Obrigado por existir na minha vida. <strong>Feliz cinco meses, meu amor.</strong> 💛</p>
-          <div class="signature">Com amor,<br><span>seu Ander ♡</span></div>
-        </div>
-        <div class="finale-actions">
-          <button class="primary-cta share-cta" id="shareButton" type="button"><span>Compartilhar este céu</span><span>↗</span></button>
-          <button class="quiet-cta" id="replayButton" type="button">↶ Viver tudo de novo</button>
-        </div>
+  <div class="dialogue-frame" id="dialogue" role="dialog" aria-label="Diálogo entre Ander e Lil" aria-modal="false" hidden>
+    <div class="dialogue-portrait"><canvas id="dialogueFace" width="104" height="112" aria-hidden="true"></canvas></div>
+    <div class="dialogue-lines">
+      <div class="dialogue-speak" id="dialogueSpeaker">LIL</div>
+      <p id="dialogueText">...</p>
+      <span class="dialogue-next">TOQUE PARA CONTINUAR ↗</span>
+    </div>
+    <button class="dialogue-hit" id="dialogueNext" type="button" aria-label="Continuar diálogo"></button>
+  </div>
+
+  <div class="challenge overlay" id="challenge" role="dialog" aria-modal="true" aria-labelledby="challengeTitle" hidden>
+    <div class="challenge-sheet">
+      <div class="challenge-label"><span>◈ INTERAÇÃO ESPECIAL</span><span id="challengeDate">08 / 06</span></div>
+      <h2 id="challengeTitle">...</h2>
+      <p id="challengeIntro">...</p>
+      <div id="challengeBody"></div>
+      <button class="challenge-close" id="challengeClose" type="button" aria-label="Voltar para o jogo">VOLTAR AO JOGO <span>×</span></button>
+    </div>
+  </div>
+
+  <div class="chapter-card overlay" id="chapterCard" role="dialog" aria-modal="true" aria-labelledby="cardTitle" hidden>
+    <div class="chapter-paper">
+      <span class="chapter-card-symbol" id="cardSymbol">✷</span>
+      <p class="chapter-card-upper">UMA NOVA LEMBRANÇA</p>
+      <h2 id="cardTitle">Capítulo concluído.</h2>
+      <p id="cardText"></p>
+      <div class="chapter-dash">— — — ✦ — — —</div>
+      <button class="start-game" id="cardContinue" type="button">SEGUIR NOSSA HISTÓRIA <span>→</span></button>
+    </div>
+  </div>
+
+  <div class="ending overlay" id="ending" role="dialog" aria-modal="true" aria-labelledby="endingTitle" hidden>
+    <div class="ending-scroll">
+      <div class="ending-head">UM FINAL? NÃO. O COMEÇO DE MUITOS OUTROS.</div>
+      <div class="ending-canvas-wrap"><canvas id="endingCanvas" width="320" height="176" aria-label="Ander e Lil juntos em uma cena de animação 2D"></canvas></div>
+      <p class="ending-overline">PARA O LIL, DO ANDER</p>
+      <h2 id="endingTitle">Eu escolheria<br><em>você, de novo.</em></h2>
+      <div class="ending-letter">
+        <p>Meu amor, já se passaram <b>cinco meses desde 8 de junho.</b> E, mesmo que nenhum dia seja igual ao outro, tem uma coisa que eu quero continuar escolhendo: nós.</p>
+        <p>Não quero te dar só mais uma mensagem bonita. Quero viver cenas novas contigo: umas engraçadas, outras difíceis, outras tão boas que a gente vai querer repetir.</p>
+        <p>Obrigado por cada instante que já coube na nossa história. E por todos aqueles que ainda vamos inventar. <b>Feliz cinco meses, Lil. 💛</b></p>
+        <div class="sign">Com carinho,<strong>Ander ♡</strong></div>
       </div>
-      <p class="footer-date">08.06 — nosso começo <span>✦</span> 08.07 — nosso primeiro mês <span>✦</span> 08.11 — 5 meses</p>
-    </section>
-  </main>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <div class="ending-actions">
+        <button id="shareButton" class="start-game" type="button">ENVIAR NOSSA AVENTURA <span>↗</span></button>
+        <button id="restartButton" class="restart-button" type="button">↶ Jogar desde o começo</button>
+      </div>
+      <p class="ending-date">8 JUNHO — 8 NOVEMBRO · 2026</p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</div>
 </body>
 </html>

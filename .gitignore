@@ -1,7 +1,10 @@
 desktop-preview.png
 mobile-*.png
+pixel-*.png
 smoke.cjs
-node_modules/
-*.log
+smoke-v2.cjs
+smoke-last.cjs
 capture-og.cjs
 corrigir-datas.cjs
+node_modules/
+*.log
