@@ -6,7 +6,7 @@
   const soundButton = $("#soundButton");
   const progressBar = $("#progressBar");
   const chapterIndicator = $("#chapterIndicator");
-  const labels = ["um presente para você", "01 / o encontro", "02 / o nosso sim", "03 / hoje", "uma carta para Lil"];
+  const labels = ["um presente para você", "01 / o encontro", "02 / nossos passos", "03 / hoje", "uma carta para Lil"];
   let current = 0;
   let soundEnabled = false;
   let context = null;
@@ -103,7 +103,7 @@
   stars.appendChild(fragment);
 
   const fireflyLines = [
-    "20 de junho: uma data pequena, um começo gigante.",
+    "8 de junho: uma data pequena, um começo gigante.",
     "No meio de tanta gente, foi tão bonito encontrar você.",
     "Ainda bem que a vida colocou nossos caminhos lado a lado."
   ];

@@ -4,3 +4,4 @@ smoke.cjs
 node_modules/
 *.log
 capture-og.cjs
+corrigir-datas.cjs
