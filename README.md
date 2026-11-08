@@ -1,32 +1,41 @@
 # Pequenos Infinitos — Ander & Lil
 
-Uma aventura romântica 2D em pixel art, feita para comemorar cinco meses de namoro (de 8 de junho a 8 de novembro de 2026).
+Jogo 2D mobile-first para comemorar os cinco meses de namoro contados a partir de **8 de junho de 2026**.
 
-**Jogue:** https://ceu-guardou-a-gente.vercel.app
+**Link público:** https://ceu-guardou-a-gente.vercel.app
 
-## Como funciona
+## Aventura
 
-- Seis capítulos jogáveis (junho a novembro) em ruas e paletas diferentes;
-- Ande com as setas na tela, pelo teclado (A/D ou ←/→), ou toque no cenário para caminhar;
-- Interaja com E, espaço, Enter ou pelo botão dedicado;
-- Lil segue Ander, e ambos têm animações de caminhada;
-- Missões: escolhas, segurar o guarda-chuva, ritmo musical, receita, fotografia no momento certo e momentos para guardar;
-- Diálogos com retratos e falas alternadas entre os dois protagonistas masculinos;
-- Cena final animada, carta e compartilhamento nativo;
-- Totalmente responsivo para celular, sem login, compilação ou backend.
+- Seis capítulos (junho a novembro), com Ander (barba e boné preto) e Lil (loiro).
+- Movimento lateral com animação, cenários de rua vivos, efeitos de clima, objetos e missões mensais.
+- **42 portas visitáveis**: 7 estabelecimentos/casas por capítulo, cada um com nome, narrativa, paleta e ambiente interno.
+- Todos os interiores podem ser acessados tocando na fachada ou escolhendo **PORTAS**, com os protagonistas caminhando até a entrada.
+- Ambientes internos 2D com objetos clicáveis, móveis próprios, luzes, janelas, pequenas animações e retorno à rua.
+- **11 famílias de minigames**: compras com lista, cuidados com três gatos, escolha de assentos no cinema, estrelas, sequência de música, preparo de comida, cartas, memória, fotografia e clima romântico.
+- **Três gatinhos:** Cookie, do Ander, e os outros dois gatinhos do Lil (sem nomes inventados).
+- **ÁLBUM** colecionável com 42 lembranças e progresso salvo somente neste navegador.
+- Final romântico e compartilhamento direto pelo celular.
 
-## Tecnologia
+## Fonte das narrativas e privacidade
 
-HTML, CSS, JavaScript e Canvas 2D. Todas as ilustrações e sprites do jogo são desenhados em tempo real; os sons são sintetizados de forma opcional. Não há serviços externos obrigatórios, exceto a fonte tipográfica opcional.
+O diário local **Enlace**, consultado somente para leitura, contém registros reais do casal. Adaptamos para o jogo lembranças apropriadas para compartilhar, como o cinema e o parque de diversões de julho, carta e flores, açaí, esfiha, músicas, cuidado em casa, planos e Cookie tentando sair.
 
-O jogo é uma fantasia inspirada em Ander e Lil — as ruas e acontecimentos são invenções ficcionais, enquanto as datas de namoro são reais.
+A origem de cada cena aparece dentro do jogo:
+- **LEMBRANÇA DO ENLACE** — baseada em um acontecimento do diário.
+- **INSPIRADO NO QUE VOCÊ CONTOU** — inspirado nas compras, dias em casa e encontros românticos relatados pelo Ander.
+- **UMA CENA IMAGINADA PARA JOGAR** — ficção lúdica, não um acontecimento afirmado como real.
 
-## Estrutura
+**Nenhum banco de dados, mensagem privada, nome dos gatos não confirmado, endereço, registro de saúde ou conteúdo íntimo explícito foi publicado ou copiado para o repositório.**
 
-- `index.html`: interface e conteúdo;
-- `styles.css`: layout e componentes;
-- `script.js`: renderização Canvas, animação, narrativa, controles e desafios;
-- `og-image.png`: imagem social;
-- `favicon.svg`: ícone.
+## Código e execução
 
-Para testar, abra `index.html` em um navegador moderno.
+HTML, CSS e JavaScript puros. Canvas 2D desenha todos os cenários, personagens e gatos. Sons opcionais são sintetizados no navegador, sem dependências de áudio. Abra `index.html` para jogar localmente.
+
+Arquivos:
+- `index.html` — HUD, diálogos, navegação e telas de interação;
+- `styles.css` — visual responsivo;
+- `script.js` — movimentação, fases, objetivos e história principal;
+- `interiors.js` — 42 lugares, entradas, renderização de salas, gatos e minigames;
+- `og-image.png` — prévia compartilhável no WhatsApp.
+
+Datas: o início em 8/6 segue o informado pelo Ander, mesmo que algumas anotações antigas do diário tenham marcos diferentes.

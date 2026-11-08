@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Pixelify+Sans:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script src="interiors.js" defer></script>
 <script src="script.js" defer></script>
 </head>
 <body>
@@ -31,6 +32,8 @@
     <div class="hud-right">
       <div class="month-chip" id="monthChip">JUN 2026</div>
       <div class="stamp-track" aria-label="Lembranças coletadas" id="stampTrack"></div>
+      <button id="doorsToggle" class="nav-toggle" type="button" aria-label="Ver todos os locais desta rua">PORTAS</button>
+      <button id="journalToggle" class="nav-toggle" type="button" aria-label="Abrir álbum de memórias">ÁLBUM <span id="memoryCounter">0/42</span></button>
       <button id="soundToggle" class="sound-toggle" type="button" aria-label="Ativar efeitos sonoros" title="Ativar ou desativar efeitos sonoros"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16 8a6 6 0 0 1 0 8"/></svg></button>
     </div>
   </div>
@@ -63,9 +66,50 @@
       </div>
       <p class="opening-meta">08.06.2026 → 08.11.2026 <span>•</span> CINCO MESES JUNTOS</p>
       <button class="start-game" id="startButton" type="button">COMEÇAR NOSSA AVENTURA <span>→</span></button>
-      <p class="opening-help">Ande com as setas ou toque na tela · Interaja com os objetos · Colete 5 memórias</p>
+      <p class="opening-help">Toque nas portas para entrar nas casas e lojas · 42 interiores · 3 gatinhos · 6 capítulos</p>
     </div>
   </div>
+
+  <section class="interior" id="interior" hidden aria-label="Ambiente interno">
+    <canvas id="roomCanvas" width="480" height="300" aria-label="Cenário interno animado com Ander e Lil"></canvas>
+    <header class="room-top">
+      <button id="roomExit" class="room-back" type="button" aria-label="Voltar à rua"><span>←</span> VOLTAR À RUA</button>
+      <div class="room-head"><small id="roomChapter">NOSSOS LUGARES</small><strong id="roomName"></strong></div>
+      <span id="roomMemoryMark" class="room-stars" aria-label="Estado da lembrança">✧</span>
+    </header>
+    <section class="room-intro" id="roomIntro">
+      <div class="room-story-label" id="roomStoryLabel">LEMBRANÇA</div>
+      <p id="roomStoryText"></p>
+      <button id="roomStoryNext" type="button">EXPLORAR ESTE LUGAR <span>→</span></button>
+    </section>
+    <div class="room-actions" id="roomActions" hidden>
+      <button id="roomInspect" class="room-tool" type="button"><span id="roomInspectIcon">✦</span><strong id="roomInspectLabel">TOCAR NOS OBJETOS</strong></button>
+      <button id="roomGameStart" class="room-tool room-primary" type="button"><span>✳</span><strong>JOGAR MINIGAME</strong></button>
+    </div>
+    <div class="room-game-layer" id="roomGameLayer" hidden>
+      <div class="room-game-sheet">
+        <header class="room-game-head"><span>MINIGAME DO LUGAR</span><button id="roomGameCancel" type="button" aria-label="Fechar minigame">×</button></header>
+        <h2 id="roomGameTitle"></h2><p id="roomGameInstructions"></p>
+        <div id="roomGameContent"></div><p id="roomGameStatus" role="status"></p>
+      </div>
+    </div>
+  </section>
+  <section class="directory overlay" id="directory" hidden role="dialog" aria-modal="true" aria-label="Lugares para explorar">
+    <div class="directory-sheet">
+      <div class="directory-head"><span>MAPA DESTA RUA</span><button id="directoryExit" type="button" aria-label="Fechar mapa">×</button></div>
+      <h2>Qual porta vamos abrir?</h2>
+      <p>Escolha um lugar. Ander e Lil caminham até a entrada, e o interior aparece.</p>
+      <div id="directoryPlaces" class="directory-places"></div>
+    </div>
+  </section>
+  <section class="journal overlay" id="journal" hidden role="dialog" aria-modal="true" aria-label="Caderno de nossas memórias">
+    <div class="journal-sheet">
+      <div class="directory-head"><span>ÁLBUM DE PEQUENOS INFINITOS</span><button id="journalExit" type="button" aria-label="Fechar álbum">×</button></div>
+      <h2>Nosso caderno</h2>
+      <p id="journalPrivacy">Lembranças inspiradas no Enlace, contos compartilhados e cenas imaginadas. Nenhuma conversa privada foi copiada para cá.</p>
+      <div id="journalEntries" class="journal-entries"></div>
+    </div>
+  </section>
 
   <div class="dialogue-frame" id="dialogue" role="dialog" aria-label="Diálogo entre Ander e Lil" aria-modal="false" hidden>
     <div class="dialogue-portrait"><canvas id="dialogueFace" width="104" height="112" aria-hidden="true"></canvas></div>

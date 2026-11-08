@@ -3,6 +3,7 @@
   const $ = (selector) => document.querySelector(selector);
   const $$ = (selector) => [...document.querySelectorAll(selector)];
   const canvas = $("#world"), ctx = canvas.getContext("2d",{alpha:false});
+  const interiores = window.InfinitosLocais;
   const endCanvas = $("#endingCanvas"), endCtx = endCanvas.getContext("2d");
   const chapterData = [
     {
@@ -70,7 +71,7 @@
   const state={
     level:0,x:92,partnerX:44,direction:1,phase:"opening",solved:new Set(),camera:0,
     width:480,height:300,ground:220,time:0,keys:{left:false,right:false},
-    autoTo:null,pendingDialog:[],dialogueIndex:0,dialogueEnd:null,challengeObject:null,
+    autoTo:null,pendingDoor:null,pendingDialog:[],dialogueIndex:0,dialogueEnd:null,challengeObject:null,
     holdValue:0,holdActive:false,beatStep:0,shutter:0,shutterDir:1,
     audio:false,audioCtx:null,started:false,particles:[],noise:0,freeze:false
   };
@@ -130,7 +131,7 @@
   function setLevel(index){
     if(index>=chapterData.length){startEnding();return}
     state.level=index;state.x=92;state.partnerX=42;state.direction=1;
-    state.solved=new Set();state.autoTo=null;state.camera=0;
+    state.solved=new Set();state.autoTo=null;state.pendingDoor=null;state.camera=0;
     updateHUD();setPhase("playing");
     window.setTimeout(()=>dialogue(g().intro),360);
   }
@@ -146,7 +147,9 @@
     if(state.phase==="dialogue"){nextDialogue();return}
     if(state.phase!=="playing")return;
     const target=availableTarget();
-    if(!target){notify("Chegue perto de um objeto luminoso ✦");return}
+    const nearestDoor=Array.from({length:7},(_,i)=>({i,d:Math.abs(state.x-(40+i*185+62))})).sort((a,b)=>a.d-b.d)[0];
+    if(nearestDoor.d<35&&(!target||target.dist>40)){interiores.open(nearestDoor.i);return}
+    if(!target){notify("Toque em uma fachada ou use PORTAS para entrar nos locais ✦");return}
     if(target.obj.exit){finishChapter();return}
     openChallenge(target.obj);
   }
@@ -262,6 +265,7 @@
     tone(600,.18);
   });
   const release=()=>{state.keys.left=false;state.keys.right=false};
+  function walkToDoor(i){release();state.pendingDoor=i;state.autoTo=clamp(40+i*185+62,35,WORLD_WIDTH-34)}
   function bindMove(id,direction){
     const b=$(id);const key=direction<0?"left":"right";
     b.addEventListener("pointerdown",e=>{e.preventDefault();b.setPointerCapture(e.pointerId);state.keys[key]=true;state.autoTo=null;b.classList.add("active")});
@@ -288,6 +292,10 @@
     const targetX=clamp(state.camera+sx,40,WORLD_WIDTH-55);
     const near=g().objects.find(o=>!state.solved.has(g().objects.indexOf(o))&&Math.abs(o.x-targetX)<42);
     const exit=state.solved.size===2&&Math.abs(1128-targetX)<48;
+    const sy=(e.clientY-r.top)/r.height*state.height;
+    const shop=Array.from({length:7},(_,i)=>({i,x:40+i*185})).find(o=>targetX>=o.x-4&&targetX<=o.x+129);
+    if(shop&&sy>state.ground-225&&sy<state.ground-68){walkToDoor(shop.i);return}
+    state.pendingDoor=null;
     state.autoTo=near?near.x:exit?1128:targetX;
   });
   function updateInput(dt){
@@ -297,6 +305,7 @@
       const delta=state.autoTo-state.x;
       if(Math.abs(delta)<7){
         state.x=state.autoTo;state.autoTo=null;
+        if(state.pendingDoor!==null){const door=state.pendingDoor;state.pendingDoor=null;interiores.open(door);return}
         if(availableTarget())interact();
       }else dir=delta>0?1:-1;
     }
@@ -691,6 +700,7 @@
       drawShop(bx,125,h,i);
     }
     drawTrees();drawStreet();drawStreetDecor();
+    interiores.renderDoors(ctx,state);
     drawObjects();
     const closer=state.partnerX>state.x;
     const walking=!!state.walking;
@@ -698,6 +708,7 @@
     // Character order changes as they cross so depth looks natural
     if(closer){drawCharacter(ctx,px,y-2,"ander",state.time,walking,1.1,state.direction);drawCharacter(ctx,fx,y-2,"lil",state.time+.5,walking,1.1,state.direction)}
     else{drawCharacter(ctx,fx,y-2,"lil",state.time+.5,walking,1.1,state.direction);drawCharacter(ctx,px,y-2,"ander",state.time,walking,1.1,state.direction)}
+    interiores.streetCats(ctx,state);
     drawFloatingParticles(dt);
     // The city has tiny moving creatures and cars independent of the protagonist
     const taxiX=(((state.time*22+state.level*70)% (WORLD_WIDTH+200))-100)-state.camera;
@@ -740,11 +751,13 @@
   function frame(timestamp){
     const dt=clamp((timestamp-last)/1000,0,.05);last=timestamp;
     state.time+=dt;
+    if(state.phase==="interior"){interiores.tick(dt);requestAnimationFrame(frame);return}
     if(state.holdTick&&state.phase==="challenge")state.holdTick(dt);
     if(state.shutterTick&&state.phase==="challenge")state.shutterTick(dt);
     updateInput(dt);drawWorld(dt);
     if(state.phase==="ending")drawEnding(state.time);
     requestAnimationFrame(frame);
   }
+  interiores.install({state,drawCharacter,notify,tone,walkToDoor});
   requestAnimationFrame(frame);
 })();

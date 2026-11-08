@@ -1,9 +1,13 @@
 desktop-preview.png
 mobile-*.png
 pixel-*.png
+preview-*.png
+interior-*.png
 smoke.cjs
 smoke-v2.cjs
 smoke-last.cjs
+smoke-interiors.cjs
+smoke-publish.cjs
 capture-og.cjs
 corrigir-datas.cjs
 node_modules/

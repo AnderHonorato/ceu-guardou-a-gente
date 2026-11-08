@@ -120,3 +120,98 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}butto
  .opening-paper{padding-top:12px}.opening-kicker{margin:7px 0}.opening h1{font-size:clamp(50px,12vw,70px);margin:4px 0 10px}.opening-sub{font-size:11px;margin-bottom:7px}.opening-figures{margin:0}.face-portrait{width:55px;height:55px}.opening-meta{margin:5px 0}.opening-help{margin-top:6px}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* NOVOS LUGARES: fachadas exploráveis, quartos em pixel art e um caderno privado-local */
+.nav-toggle{font:700 12px var(--pixel);letter-spacing:.05em;white-space:nowrap;color:#fff0ce;background:#213e50d9;border:2px solid #efd4ac9c;padding:8px 9px;box-shadow:2px 2px #192a3d;min-height:35px}
+.nav-toggle span{color:#f5bd85}
+.nav-toggle:hover{background:#b76a64;color:#fff8e8}
+.interior{position:absolute;z-index:28;inset:0;overflow:hidden;background:linear-gradient(155deg,#2b495b,#b17e80 64%,#433e58);color:#fff0d5}
+.interior::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.32;background:repeating-linear-gradient(90deg,#ffffff0b 0 6px,transparent 6px 40px)}
+#roomCanvas{position:absolute;z-index:2;image-rendering:pixelated;image-rendering:crisp-edges;display:block;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100vw,1180px);height:auto;aspect-ratio:8/5;box-shadow:0 0 0 6px #374f5daa,0 24px 100px #1b243e89;touch-action:manipulation;cursor:pointer}
+.room-top{position:absolute;z-index:4;left:0;top:0;right:0;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:calc(17px + env(safe-area-inset-top)) clamp(17px,5vw,52px) 20px;background:linear-gradient(#172f3ddd,transparent)}
+.room-back{border:3px solid #ffdfb7;background:#f3cd9b;color:#304656;padding:9px 12px;font:700 16px var(--pixel);white-space:nowrap;box-shadow:4px 4px #172d3c}
+.room-back span{font-size:22px;padding-right:8px}
+.room-head{text-align:center;display:flex;flex-direction:column;gap:4px}.room-head small{font:700 11px var(--pixel);letter-spacing:.1em;color:#eac3a3}.room-head strong{font:700 clamp(16px,2.2vw,24px) var(--pixel);color:#fff4d8;text-shadow:2px 2px #273f50}
+.room-stars{font:700 36px var(--pixel);color:#f4d59d;text-shadow:0 0 18px #f6d59b}
+.room-intro{position:absolute;z-index:6;left:50%;bottom:calc(15px + env(safe-area-inset-bottom));width:min(525px,calc(100vw - 28px));transform:translateX(-50%);padding:18px 21px 19px;border:4px solid #294352;background:#f7e5c9;color:#3a4a56;box-shadow:7px 7px #142a3b9c}
+.room-story-label{font:700 11px var(--pixel);color:#b56752;letter-spacing:.1em}
+.room-intro p{font-size:clamp(12px,1.6vw,15px);line-height:1.65;margin:9px 0 14px}
+.room-intro button{display:flex;justify-content:space-between;align-items:center;gap:20px;width:100%;background:#edae72;border:2px solid #324858;color:#293f50;padding:10px 12px;font:700 16px var(--pixel);box-shadow:3px 3px #334958}
+.room-intro button span{font-size:24px}
+.room-actions{position:absolute;z-index:6;bottom:calc(22px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(540px,calc(100% - 28px));display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.room-tool{border:3px solid #2a4353;background:#f3e0c1;color:#344955;box-shadow:4px 4px #1e3241;display:flex;align-items:center;justify-content:center;gap:10px;min-height:61px;padding:8px 11px}
+.room-tool span{font:700 23px var(--pixel);color:#c77464}
+.room-tool strong{font:700 clamp(11px,1.6vw,16px) var(--pixel);text-align:left}
+.room-tool.room-primary{background:#f6ba78}
+.room-tool:hover{transform:translateY(-3px)}
+.room-game-layer{position:absolute;z-index:14;inset:0;background:#172b39cf;display:grid;place-items:center;padding:18px;backdrop-filter:blur(2px)}
+.room-game-sheet{margin:auto;width:min(540px,100%);max-height:calc(100dvh - 36px);overflow-y:auto;border:5px solid #334b5c;background:#f7e6ca;color:#354956;box-shadow:8px 8px #142737;padding:22px clamp(18px,4vw,30px)}
+.room-game-head{display:flex;justify-content:space-between;align-items:center;border-bottom:2px dashed #c89c7f;padding-bottom:10px;color:#b76556;font:700 12px var(--pixel);letter-spacing:.06em}
+.room-game-head button,.directory-head button{width:30px;height:30px;display:grid;place-items:center;background:#d99a81;color:#293d4f;border:2px solid #385060;font:700 22px var(--pixel)}
+.room-game-sheet h2{font:700 clamp(33px,7vw,55px)/.95 var(--pixel);margin:19px 0 11px;color:#2d4553}
+.room-game-sheet>p{line-height:1.6;font-size:14px;color:#66717a}
+#roomGameStatus{font:700 14px var(--pixel);min-height:23px;color:#b96b54}
+.room-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}
+.room-answer,.room-finish{border:2px solid #3d5565;background:#fff5df;padding:12px 10px;min-height:53px;text-align:left;color:#3f5160;font:700 17px/1.2 var(--pixel);box-shadow:3px 3px #ceb294}
+.room-answer:hover,.room-finish:hover{background:#f3be8f}
+.room-answer:disabled{opacity:.8;background:#b4cfba;cursor:default}
+.room-finish{width:100%;background:#f3bb82;text-align:center}
+.room-miniprogress{font:700 15px var(--pixel);color:#af715e;margin:16px 0}
+.room-seat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:15px 0}
+.room-seat{border:3px solid #324c5f;background:#b98b9d;color:#fff2d7;font:700 21px var(--pixel);padding:18px 3px}
+.room-seat.picked{background:#8cb9ad}
+.room-stars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:12px 0}
+.room-star-button{font:700 46px var(--pixel);color:#dca07b;background:#fff5d9;border:2px solid #b18e7a;min-height:68px;animation:room-sparkle 1.8s ease-in-out infinite alternate}
+.room-card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:15px 0}
+.room-memory-card{font:700 40px var(--pixel);border:3px solid #3d5664;background:#d3af9d;color:#344a5b;min-height:78px}
+.room-memory-card.matched{background:#9dc7b5;color:#284d49}
+.room-shutter-track{position:relative;margin:26px 5px;height:25px;background:linear-gradient(90deg,#d89284,#f2d9aa 30%,#a0c6b8 50%,#f2d9aa 70%,#d89284);border:3px solid #364c5a}
+.room-shutter-target{position:absolute;left:43%;width:14%;height:34px;top:-8px;border:3px dashed #a85457}
+.room-shutter-cursor{position:absolute;left:0;top:-9px;width:12px;height:38px;background:#2d4558}
+.room-success{font:700 26px var(--pixel);color:#b56a57;text-align:center;margin:20px 0}
+.room-game-sheet #roomGameContent>p{font-size:13px;line-height:1.6;color:#667179}
+.directory,.journal{z-index:45;background:#132839d7;backdrop-filter:blur(3px)}
+.directory-sheet,.journal-sheet{width:min(610px,100%);margin:auto;padding:22px clamp(17px,5vw,32px);max-height:calc(100dvh - 34px);overflow-y:auto;background:#f6e4c7;color:#344b5b;border:5px solid #2c4556;box-shadow:8px 8px #172b38}
+.directory-head{display:flex;justify-content:space-between;align-items:center;border-bottom:2px dashed #c5a085;padding-bottom:11px;font:700 13px var(--pixel);color:#b16655}
+.directory-sheet h2,.journal-sheet h2{font:700 clamp(36px,7vw,58px)/.9 var(--pixel);margin:18px 0 10px}
+.directory-sheet p,.journal-sheet p{font-size:13px;line-height:1.55;color:#677079}
+.directory-places{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:17px 0}
+.directory-place{border:2px solid #3d5767;box-shadow:3px 3px #c9a88e;background:#f5ce9e;color:#344758;padding:12px 10px;min-height:56px;text-align:left;font:700 15px/1.25 var(--pixel)}
+.directory-place:hover{background:#a7c9bd}
+.journal-entries{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:13px}
+.journal-entry{padding:10px;background:#eee0c8;border:2px dashed #cfb9a2;display:flex;flex-direction:column;gap:5px}
+.journal-entry strong{font:700 15px var(--pixel);color:#857e7c}.journal-entry span{font-size:11px;line-height:1.4;color:#7c7d7a}
+.journal-entry.is-open{border:2px solid #97ae99;background:#fff2d8}.journal-entry.is-open strong{color:#a56350}.journal-entry.is-open span{color:#455562}
+@keyframes room-sparkle{from{transform:translateY(0) rotate(-6deg)}to{transform:translateY(-8px) rotate(8deg)}}
+@media(max-width:700px){
+ .hud{flex-wrap:wrap;padding:calc(9px + env(safe-area-inset-top)) 12px 8px;gap:3px}
+ .hud-left{width:100%;justify-content:space-between;align-items:center}
+ .hud-right{width:100%;justify-content:space-between}
+ .nav-toggle{padding:5px 6px;font-size:11px;min-height:29px}
+ .month-chip{font-size:10px}
+ .objective{top:calc(108px + env(safe-area-inset-top));max-width:84vw}
+ .interior{background:linear-gradient(135deg,#3c6270,#b0838a 58%,#2d415a)}
+ #roomCanvas{width:100vw;height:100dvh;aspect-ratio:auto;top:50%;box-shadow:none}
+ .room-top{padding:calc(12px + env(safe-area-inset-top)) 12px 10px;gap:8px}
+ .room-back{padding:6px 7px;font-size:12px;box-shadow:2px 2px #172d3c}
+ .room-back span{font-size:17px;padding-right:3px}
+ .room-head strong{font-size:15px}.room-head small{font-size:8px}
+ .room-stars{font-size:24px}
+ .room-intro{bottom:calc(21px + env(safe-area-inset-bottom));padding:13px 16px}
+ .room-intro p{font-size:12px;line-height:1.5}
+ .room-intro button{font-size:14px}
+ .room-actions{bottom:calc(20px + env(safe-area-inset-bottom))}
+ .room-tool{min-height:55px;gap:4px;padding:5px}.room-tool strong{font-size:12px}
+ .directory-places{grid-template-columns:1fr}.journal-entries{grid-template-columns:1fr}
+ .room-game-sheet{padding:15px}.room-game-sheet h2{font-size:40px}
+ .room-answer{font-size:14px;padding:9px 8px;min-height:46px}
+ .room-seat{padding:13px 2px;font-size:18px}
+}
+@media(max-width:380px){.stamp-track{gap:2px}.stamp{width:6px;height:6px}.hud-right{gap:2px}.nav-toggle{font-size:10px}.room-head strong{font-size:13px}}
+
+/* Portas abrindo e reação visual nos objetos tocados */
+.interior:not([hidden]){animation:room-enter .38s cubic-bezier(.16,.85,.25,1) both}
+.room-touch-spark{position:absolute;z-index:10;pointer-events:none;color:#fff6cf;font:700 35px var(--pixel);text-shadow:0 0 15px #ffdb91;animation:room-touch .7s ease-out both}
+@keyframes room-enter{0%{opacity:.12;transform:scale(1.055);filter:brightness(.65)}100%{opacity:1;transform:scale(1);filter:brightness(1)}}
+@keyframes room-touch{0%{opacity:1;transform:translate(-50%,-50%) scale(.5)}100%{opacity:0;transform:translate(-50%,-140%) scale(1.9)}}
+@media(prefers-reduced-motion:reduce){.interior:not([hidden]),.room-touch-spark{animation:none}}
