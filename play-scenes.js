@@ -1,5 +1,6 @@
 "use strict";
 window.PequeScenes=(()=>{
+ const clamp=(v,a,b)=>Math.max(a,Math.min(v,b));
  const P=(c,col,x,y,w,h)=>{c.fillStyle=col;c.fillRect(Math.round(x),Math.round(y),Math.ceil(w),Math.ceil(h));};
  const C=(c,col,x,y,r)=>{c.fillStyle=col;c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fill();};
  const R=(c,col,x,y,w,h,r=5)=>{c.fillStyle=col;c.beginPath();c.roundRect(x,y,w,h,r);c.fill();};
