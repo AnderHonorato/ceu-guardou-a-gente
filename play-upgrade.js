@@ -265,6 +265,7 @@
          host.state.level=parts[0];
          if(document.querySelector("#dialogue"))document.querySelector("#dialogue").hidden=true;
          open(parts[1]);
+         if(new URLSearchParams(location.search).get("preview-game")==="1")setTimeout(()=>document.querySelector("#pxPlay")?.click(),450);
        },750);
      },180);
    }
