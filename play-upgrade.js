@@ -142,7 +142,10 @@
    if(hotspot.kind==="moment")world.lx+=(world.px-world.lx)*.7;
    popAt(hotspot.x,hotspot.y,15);
    const arr=thoughts[world.type]||thoughts.cafe;
-   say(arr[hotspot.kind==="observe"?0:1],3.3);host.tone(720,.24);
+   const memory=world.room.story||"";
+   const detail=memory.length>115?memory.slice(0,112)+"…":memory;
+   say(hotspot.kind==="observe"&&detail?detail:arr[1],4.3);
+   host.tone(720,.24);
  }
  function startGame(){
    if(!world||world.game)return;
@@ -227,14 +230,23 @@
    if(S.H>670&&!S.game)drawAtmosphere(S);
    if(S.game)S.game.render(ctx);
    if(S.won){
-     ctx.fillStyle="#122b3bc5";ctx.fillRect(0,S.ground-330,S.W,330);
-     const pulse=1+Math.sin(S.t*4)*.05;
-     ctx.save();ctx.translate(S.W*.5,S.ground-190);ctx.scale(pulse,pulse);
-     window.PequeScenes.G(ctx,0,0,160,"#ffdcadbe");
-     window.PequeScenes.T(ctx,"♥",0,30,105,"#ffd6c8");
-     ctx.restore();
-     window.PequeScenes.T(ctx,"MEMÓRIA DESBLOQUEADA",S.W*.5,S.ground-75,23,"#fff4ce");
-     if(S.t-S.wonAt>3.5)stopGame();
+     const art=window.PequeScenes;
+     const t=S.t-S.wonAt;
+     ctx.fillStyle="#142c3ce6";ctx.fillRect(0,S.ground-360,S.W,350);
+     art.G(ctx,S.W*.5,S.ground-196,185,"#ffe0b9b7");
+     const join=Math.min(1,t*1.5);
+     const mid=S.W*.5;
+     host.drawCharacter(ctx,mid-89+join*55,S.ground-86,"ander",S.t,true,3.15);
+     host.drawCharacter(ctx,mid+89-join*55,S.ground-86,"lil",S.t+.5,true,3.15);
+     const signs={home:"🐈",market:"✦",cinema:"▣",park:"✿",motel:"♡",cafe:"☕",music:"♫",book:"✉",arcade:"★",restaurant:"✧",photo:"▣"};
+     const sign=signs[S.type]||"✦";
+     for(let j=0;j<12;j++){
+       const x=mid+Math.sin(j*2.4+S.t*.9)*150;
+       const y=S.ground-296+((j*31-S.t*30)%(190)+190)%190;
+       art.T(ctx,j%3===0?sign:"♥",x,y,16+(j%3)*3,j%2?"#ffe8be":"#ffc3c4");
+     }
+     art.T(ctx,"SALVAMOS ESTE INSTANTE!",mid,S.ground-47,24,"#fff4ce");
+     if(t>4.3)stopGame();
    }
    if(S.messageUntil<S.t)$("#pxToast").classList.remove("visible");
    if(S.game)$("#pxGameInstruction").textContent=S.game.instruction;
@@ -256,19 +268,7 @@
  original.open=open;original.close=close;original.tick=tick;
  original.install=function(h){
    host=h;originalInstall(h);mount();
-   const preview=new URLSearchParams(location.search).get("preview-room");
-   if(preview&&/^[0-5]-[0-6]$/.test(preview)){
-     const parts=preview.split("-").map(Number);
-     setTimeout(()=>{
-       document.querySelector("#startButton")?.click();
-       setTimeout(()=>{
-         host.state.level=parts[0];
-         if(document.querySelector("#dialogue"))document.querySelector("#dialogue").hidden=true;
-         open(parts[1]);
-         if(new URLSearchParams(location.search).get("preview-game")==="1")setTimeout(()=>document.querySelector("#pxPlay")?.click(),450);
-       },750);
-     },180);
-   }
+
  };
  window.__PequenosVisualStatus=()=>world?{
    level:world.level,room:world.name,type:world.type,playing:!!world.game,
