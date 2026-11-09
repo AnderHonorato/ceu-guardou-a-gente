@@ -178,6 +178,33 @@ window.PequeScenes=(()=>{
    for(let i=0;i<3;i++)C(c,"#ffffff8e",cupx-12+i*13+Math.sin(t*2+i)*3,ground-109-i*12,4);
    T(c,"AÇAÍ & CAFÉ",W*.73,ground-331,19,"#fceccf");
  }
+ function music(c,S){
+   const {W,ground,t}=S;
+   G(c,W*.5,ground-242,280,"#f3a5bf5c");
+   R(c,"#483951",W*.06,ground-336,W*.88,228,9);
+   for(let side=0;side<2;side++){
+     const sx=side?W*.75:W*.09;
+     R(c,"#26384d",sx,ground-297,W*.18,189,7);
+     for(let i=0;i<3;i++){
+       C(c,"#b7759b",sx+W*.09,ground-251+i*55,26-i*5);
+       C(c,"#3a4961",sx+W*.09,ground-251+i*55,17-i*3);
+       C(c,"#efd9b2",sx+W*.09,ground-251+i*55,4);
+     }
+   }
+   R(c,"#a57587",W*.3,ground-232,W*.39,97,8);
+   R(c,"#f0c9aa",W*.32,ground-213,W*.34,13,3);
+   C(c,"#2c344e",W*.5,ground-164,37);
+   C(c,"#bd8da1",W*.5,ground-164,17);
+   C(c,"#f8e5c1",W*.5,ground-164,5);
+   L(c,"#f2d5b4",W*.5+27,ground-173,W*.58,ground-194,4);
+   for(let i=0;i<10;i++){
+     const h=22+Math.abs(Math.sin(t*4+i*.65))*70;
+     R(c,["#f6bbbc","#b0d8c2","#f1d394"][i%3],W*.29+i*W*.042,ground-315-h,12,h,2);
+   }
+   for(let i=0;i<8;i++){
+     T(c,i%2?"♪":"♫",W*.17+i*W*.09,ground-319-Math.sin(t*1.6+i)*27,18,"#fff0d7");
+   }
+ }
  function motel(c,S){
    const {W,ground,t}=S;
    const mood=S.mood??.68,soft=c.createLinearGradient(0,0,W,ground);
