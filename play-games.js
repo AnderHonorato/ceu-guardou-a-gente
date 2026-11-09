@@ -121,7 +121,7 @@ window.PequeGames=(()=>{
    };
    function filmMove(x){
      const next=clamp((x-W*.11)/(W*.78),0,1);
-     g.film=next;g.seen.add(Math.min(2,Math.floor(next*3)));
+     g.film=next;g.seen.add(Math.min(2,Math.floor(next*3)));g.score=g.seen.size;
      if(g.seen.size>=3&&next>.94)finish();
    }
    function catchLight(x,y){
