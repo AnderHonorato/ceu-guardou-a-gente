@@ -254,7 +254,21 @@
  const originalTick=original.tick.bind(original);
  const originalInstall=original.install.bind(original);
  original.open=open;original.close=close;original.tick=tick;
- original.install=function(h){host=h;originalInstall(h);mount()};
+ original.install=function(h){
+   host=h;originalInstall(h);mount();
+   const preview=new URLSearchParams(location.search).get("preview-room");
+   if(preview&&/^[0-5]-[0-6]$/.test(preview)){
+     const parts=preview.split("-").map(Number);
+     setTimeout(()=>{
+       document.querySelector("#startButton")?.click();
+       setTimeout(()=>{
+         host.state.level=parts[0];
+         if(document.querySelector("#dialogue"))document.querySelector("#dialogue").hidden=true;
+         open(parts[1]);
+       },750);
+     },180);
+   }
+ };
  window.__PequenosVisualStatus=()=>world?{
    level:world.level,room:world.name,type:world.type,playing:!!world.game,
    score:world.game?.score||0,phase:world.game?.phase||0,won:world.won,
