@@ -1,0 +1,45 @@
+#interior.px-pro{background:#203747}
+#interior.px-pro>.room-top,#interior.px-pro>#roomCanvas,#interior.px-pro>.room-intro,#interior.px-pro>.room-actions,#interior.px-pro>.room-game-layer{display:none!important}
+.px-world{position:absolute;inset:0;z-index:18;overflow:hidden;background:#223c4b;color:#fff3de;isolation:isolate;font-family:'DM Sans',sans-serif}
+.px-world[hidden]{display:none!important}
+#pxCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;image-rendering:pixelated;image-rendering:crisp-edges;touch-action:none;cursor:crosshair}
+.px-world:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.1;background:repeating-linear-gradient(0deg,transparent 0px,transparent 3px,#172633 3px,#172633 4px)}
+.px-head{position:absolute;z-index:20;top:0;left:0;right:0;padding:calc(16px + env(safe-area-inset-top)) clamp(16px,4vw,36px) 20px;display:flex;gap:16px;align-items:flex-start;justify-content:space-between;background:linear-gradient(#0e2439cf 0%,#0e243900 100%)}
+.px-back{border:2px solid #f6dfbd;color:#fff5df;background:#183346d9;padding:10px 15px;box-shadow:3px 3px #122638;font:700 14px 'Pixelify Sans',monospace;white-space:nowrap}
+.px-title{text-align:right;min-width:0}
+.px-kicker{font:700 10px 'Pixelify Sans',monospace;color:#f7bd93;letter-spacing:.17em}
+.px-title h2{font:700 clamp(21px,3vw,38px)/.94 'Pixelify Sans',monospace;margin:4px 0 0;max-width:480px;text-shadow:2px 3px #213443;letter-spacing:-.025em}
+.px-bottom{position:absolute;z-index:22;bottom:0;left:0;right:0;padding:12px clamp(16px,4vw,36px) calc(21px + env(safe-area-inset-bottom));background:linear-gradient(transparent,#142c3ae8 48%,#132d3ff0 100%);display:flex;align-items:end;justify-content:space-between;gap:9px}
+.px-move{display:flex;gap:10px}
+.px-move button,.px-act,.px-play{border:3px solid #324b5e;box-shadow:4px 4px #13293a;font:700 17px 'Pixelify Sans',monospace;min-height:57px;color:#233f4e;background:#f6d4a4;touch-action:none;user-select:none}
+.px-move button{width:65px;font-size:26px;background:#f6e6c7}
+.px-move button.down,.px-act:active,.px-play:active{transform:translate(3px,3px);box-shadow:1px 1px #13293a;background:#f2bd86}
+.px-buttons{display:flex;gap:8px}
+.px-act{padding:8px 14px;background:#f5e0c1}
+.px-play{padding:8px 15px;background:#edae7a}
+.px-tip{position:absolute;z-index:23;left:50%;bottom:calc(95px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(560px,calc(100% - 24px));padding:12px 15px;display:flex;align-items:center;justify-content:center;gap:8px;background:#1d3648db;color:#fff2dd;border:2px solid #f0d5ad80;backdrop-filter:blur(4px);font:700 13px 'Pixelify Sans',monospace;text-align:center;line-height:1.25;pointer-events:none}
+.px-tip strong{color:#ffd49b;white-space:nowrap}
+.px-tip[hidden]{display:none!important}
+.px-gamebar{position:absolute;z-index:22;top:calc(89px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:min(540px,calc(100% - 24px));display:flex;align-items:center;justify-content:space-between;gap:9px;background:#223e4fe8;border:2px solid #f2d6af91;padding:8px 10px;font:700 12px/1.2 'Pixelify Sans',monospace;color:#ffefd2}
+.px-gamebar[hidden]{display:none!important}
+.px-closegame{background:#f5d1a4;border:0;padding:6px 9px;color:#344d5c;font:700 12px 'Pixelify Sans',monospace}
+.px-toast{position:absolute;z-index:26;top:calc(151px + env(safe-area-inset-top));left:50%;transform:translateX(-50%) translateY(14px);max-width:min(550px,calc(100% - 34px));background:#ffeed6;border:3px solid #354b5d;color:#3b4c58;font:700 15px/1.3 'Pixelify Sans',monospace;padding:11px 15px;text-align:center;pointer-events:none;opacity:0;transition:opacity .25s,transform .25s}
+.px-toast.visible{opacity:1;transform:translateX(-50%) translateY(0)}
+.px-cutscene{position:absolute;z-index:21;top:48%;left:50%;transform:translate(-50%,-50%);width:min(475px,calc(100vw - 32px));pointer-events:none;opacity:0;transition:opacity .3s;text-align:center}
+.px-cutscene.show{opacity:1}
+.px-cutscene .px-gold{display:block;font:700 46px 'Pixelify Sans',monospace;color:#fff0bf;text-shadow:0 0 30px #f2bb90}
+.px-cutscene span{display:block;font:700 19px 'Pixelify Sans',monospace;color:#fff4d9;text-shadow:2px 2px #273b50}
+@media(max-width:700px){
+ .px-head{padding:calc(12px + env(safe-area-inset-top)) 14px 18px;gap:8px}
+ .px-title h2{font-size:clamp(18px,5vw,26px);max-width:220px}
+ .px-kicker{font-size:9px}
+ .px-back{padding:8px 9px;font-size:12px}
+ .px-bottom{padding:9px 14px calc(19px + env(safe-area-inset-bottom))}
+ .px-move{gap:8px}.px-move button{width:59px;min-height:59px}
+ .px-buttons{gap:6px}.px-act,.px-play{padding:6px 9px;min-height:59px;font-size:14px}
+ .px-tip{bottom:calc(93px + env(safe-area-inset-bottom));padding:8px;font-size:12px}
+ .px-gamebar{top:calc(81px + env(safe-area-inset-top));font-size:11px}
+ .px-toast{top:calc(142px + env(safe-area-inset-top));font-size:13px}
+}
+@media(max-width:375px){.px-move button{width:52px}.px-act,.px-play{font-size:12px;padding:6px}}
+@media(prefers-reduced-motion:reduce){.px-toast,.px-cutscene{transition:none}}
