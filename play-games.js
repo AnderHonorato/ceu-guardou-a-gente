@@ -80,7 +80,7 @@ window.PequeGames=(()=>{
      g.playing=true;g.cursor={x,y};
      if(kind==="market"||kind==="book"||kind==="restaurant"){
        if(g.phase===0)registerDrag(x,y);
-       else if(kind==="restaurant")angle(x,y);
+       else if(kind==="restaurant"){g.pressed=true;angle(x,y)}
      }else if(kind==="home"){g.pressed=true;g.cursor={x,y}}
      else if(kind==="cinema"){g.pressed=true;filmMove(x)}
      else if(kind==="park"||kind==="party"){catchLight(x,y)}
