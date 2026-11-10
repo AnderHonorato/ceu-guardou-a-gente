@@ -17,3 +17,7 @@ node_modules/
 daily-*.png
 test-daily-episode.cjs
 daily-gesture-smoke.cjs
+
+flight-*.png
+test-flight-2026-11-10.cjs
+test-flight-arrival.cjs

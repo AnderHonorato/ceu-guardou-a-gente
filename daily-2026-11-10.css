@@ -1,0 +1,71 @@
+/* Episódio 10/11: O recado que aprendeu a voar — visual 2D */
+.flight-launch{display:flex;align-items:center;gap:11px;text-align:left;width:min(100%,365px);min-height:72px;margin:11px auto 6px;padding:10px 12px;border:3px solid #45516c;background:#b2cfcd;color:#31465b;box-shadow:4px 4px #46546a;cursor:pointer;transition:transform .16s,background .16s}
+.flight-launch:hover{transform:translateY(-2px);background:#cee3da}
+.flight-launch-icon{font:700 32px "Pixelify Sans",monospace;color:#f6ecd6}
+.flight-launch>span:nth-child(2){flex:1;display:flex;flex-direction:column;gap:3px}
+.flight-launch small{font:700 10px "Pixelify Sans",monospace;color:#4b7070;letter-spacing:.05em}
+.flight-launch strong{font:700 18px/1.08 "Pixelify Sans",monospace;color:#314659}
+.flight-launch em{font:600 11px "DM Sans",sans-serif;color:#637782;font-style:normal}
+.flight-launch>span:last-child{font:700 24px "Pixelify Sans",monospace}
+.flight-after-ending,.flight-from-yesterday{border:3px solid #374f61;box-shadow:3px 3px #273849;background:#accdc9;color:#2a4456;padding:10px 13px;font:700 15px "Pixelify Sans",monospace;cursor:pointer;min-height:47px}
+.flight-from-yesterday{background:#edd4b3}
+.opening-paper{max-height:calc(100dvh - 20px);overflow-y:auto;scrollbar-width:thin}
+.flight-episode{position:absolute;inset:0;z-index:106;overflow:hidden;isolation:isolate;background:#283e59;color:#fff2de;font-family:"DM Sans",sans-serif}
+.flight-episode[hidden]{display:none!important}
+#flightCanvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;display:block;image-rendering:pixelated;image-rendering:crisp-edges;cursor:crosshair}
+.flight-episode::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;opacity:.075;background:repeating-linear-gradient(0deg,transparent 0 3px,#16253b 3px 4px)}
+.flight-top{position:absolute;top:0;left:0;right:0;z-index:10;display:flex;align-items:flex-start;gap:12px;padding:calc(16px + env(safe-area-inset-top)) clamp(15px,3vw,34px) 23px;background:linear-gradient(#1b2d4dd4,#1b2d4d00)}
+.flight-top button{padding:9px 11px;border:2px solid #fff0d1;background:#21364ed9;color:#fff0d6;font:700 13px "Pixelify Sans",monospace;box-shadow:3px 3px #1b2c46;white-space:nowrap;cursor:pointer}
+.flight-heading{flex:1;min-width:0;display:flex;align-items:flex-end;flex-direction:column;text-align:right;gap:4px}
+.flight-heading small{font:700 10px "Pixelify Sans",monospace;color:#ffe0b4;letter-spacing:.06em}
+.flight-heading strong{font:700 clamp(19px,2.5vw,32px)/1 "Pixelify Sans",monospace;text-shadow:2px 2px #20314f}
+#flightCount{border:2px solid #ffe2af;background:#273950c9;color:#fff1bd;padding:8px;font:700 15px "Pixelify Sans",monospace;white-space:nowrap;box-shadow:3px 3px #1a2e42}
+.flight-progress{position:absolute;z-index:11;top:0;left:0;right:0;height:5px;background:#5d627a85}
+#flightProgressFill{height:100%;width:0;background:linear-gradient(90deg,#dcb7ab,#f8e0aa,#a4d8cf);box-shadow:0 0 13px #ffe2b5;transition:width .1s linear}
+.flight-instruction{position:absolute;z-index:12;left:50%;bottom:calc(109px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(620px,calc(100% - 28px));text-align:center;border:2px solid #fff0d1ac;padding:10px 13px;background:#23364edb;color:#fff2d6;font:700 14px/1.28 "Pixelify Sans",monospace;pointer-events:none}
+.flight-paper-tips{position:absolute;z-index:9;left:50%;top:calc(117px + env(safe-area-inset-top));transform:translateX(-50%);display:flex;flex-direction:column;gap:7px;align-items:center;color:#fff2d9;font:700 14px "Pixelify Sans",monospace;pointer-events:none}
+.flight-paper-tips>span:first-child{padding:5px 10px;background:#31465bb0;border:2px solid #e9d9c6bd}
+.flight-paper-tips>span:last-child{font-size:11px;letter-spacing:.13em}
+.flight-bottom{position:absolute;bottom:0;left:0;right:0;z-index:20;display:flex;justify-content:flex-end;align-items:flex-end;gap:10px;padding:12px clamp(14px,3vw,40px) calc(20px + env(safe-area-inset-bottom));background:linear-gradient(transparent,#182f49e3 53%,#182f49)}
+.flight-bottom button{border:3px solid #293b59;box-shadow:4px 4px #182a45;background:#f2d2a9;color:#293f52;font:700 17px "Pixelify Sans",monospace;min-height:52px;padding:8px 14px;touch-action:none;user-select:none;cursor:pointer}
+.flight-bottom button:active{transform:translate(3px,3px);box-shadow:1px 1px #182a45}
+#flightSound{min-width:52px;font-size:21px;background:#bfd6ca}
+#flightSound.enabled{background:#e8ce9d}
+#flightAction{background:#f1b4a0;min-width:155px}
+.flight-steer{display:flex;align-items:center;gap:10px;margin-right:auto}
+.flight-steer[hidden]{display:none!important}
+.flight-steer button{width:66px;background:#e2dec8;font-size:27px;padding:8px}
+.flight-result{position:absolute;z-index:30;left:50%;top:50%;transform:translate(-50%,-50%);width:min(570px,calc(100% - 36px));max-height:calc(100% - 110px);overflow-y:auto;padding:25px;background:linear-gradient(155deg,#fff0db,#f4d5bf);color:#34485d;border:5px solid #344b62;box-shadow:10px 11px #182b44a1;text-align:center}
+.flight-result[hidden]{display:none!important}
+.flight-result-mark{font:700 37px "Pixelify Sans",monospace;color:#cf8590;letter-spacing:.14em;animation:flight-pulse 2s ease-in-out infinite alternate}
+.flight-result h2{font:700 clamp(35px,7.3vw,71px)/.91 "Pixelify Sans",monospace;margin:18px auto;letter-spacing:-.06em}
+.flight-result p{font:500 14px/1.7 "DM Sans",sans-serif;color:#626578;max-width:410px;margin:0 auto 16px}
+.flight-result-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:18px auto}
+.flight-result-badges span{border:2px solid #c49b97;padding:7px 9px;color:#875f6a;font:700 12px "Pixelify Sans",monospace}
+.flight-result button{display:block;width:min(360px,100%);margin:10px auto;border:3px solid #384d60;min-height:48px;padding:11px 14px;color:#37485a;background:#b5d4c5;font:700 15px "Pixelify Sans",monospace;box-shadow:3px 3px #c0aba3;cursor:pointer}
+.flight-result button:last-child{background:#f1bfa9}
+.flight-toast{position:absolute;left:50%;top:calc(108px + env(safe-area-inset-top));transform:translateX(-50%) translateY(-12px);z-index:25;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;background:#e8d7cbe6;color:#2b4459;border:2px solid #32475d;padding:9px 12px;font:700 14px "Pixelify Sans",monospace;text-align:center;max-width:90%}
+.flight-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@keyframes flight-pulse{from{transform:scale(.93);opacity:.75}to{transform:scale(1.08);opacity:1}}
+@media(max-width:700px){
+ .flight-launch{width:100%;margin:8px 0;padding:8px;min-height:68px}
+ .flight-launch strong{font-size:16px}.flight-launch small{font-size:9px}
+ .flight-top{padding:calc(11px + env(safe-area-inset-top)) 11px 17px;gap:7px}
+ .flight-top button{padding:7px;font-size:11px}
+ .flight-heading strong{font-size:clamp(15px,4.4vw,22px);max-width:215px}
+ .flight-heading small{font-size:8px;max-width:190px}
+ #flightCount{font-size:11px;padding:7px 4px}
+ .flight-paper-tips{top:calc(94px + env(safe-area-inset-top));font-size:12px}
+ .flight-instruction{bottom:calc(88px + env(safe-area-inset-bottom));font-size:11px;padding:8px}
+ .flight-bottom{padding:9px 13px calc(16px + env(safe-area-inset-bottom));gap:7px}
+ .flight-bottom button{font-size:13px;min-height:48px;padding:7px 9px}
+ .flight-steer{gap:7px}.flight-steer button{width:55px;font-size:22px}
+ #flightSound{min-width:45px;font-size:18px}
+ #flightAction{min-width:110px}
+ .flight-result{padding:18px 14px;max-height:calc(100% - 95px)}
+ .flight-result p{font-size:12px;line-height:1.55}
+ .flight-result h2{font-size:clamp(36px,9vw,55px)}
+ .flight-toast{top:calc(92px + env(safe-area-inset-top));font-size:12px}
+}
+@media(max-width:350px){.flight-steer button{width:44px}.flight-bottom button{font-size:12px}#flightAction{min-width:91px}}
+@media(prefers-reduced-motion:reduce){.flight-result-mark{animation:none}.flight-toast{transition:none}}

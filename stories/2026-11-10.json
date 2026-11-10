@@ -1,0 +1,46 @@
+{
+  "id": "2026-11-10",
+  "version": 1,
+  "date": "2026-11-10",
+  "timezone": "America/Sao_Paulo",
+  "slug": "o-recado-que-aprendeu-a-voar",
+  "title": "O recado que aprendeu a voar",
+  "kind": "cena_imaginada_para_jogar",
+  "privacy": "Ficção lúdica, nenhum acontecimento de 10/11 foi informado como real.",
+  "premise": "Ander dobra um avião de papel com um coração. O avião atravessa a cidade ao anoitecer, recolhe estrelas e entrega um recado a Lil, que o espera com seus dois gatos. Uma fantasia para celebrar o casal, não uma afirmação sobre onde estiveram.",
+  "player": "Ander",
+  "receiver": "Lil",
+  "dateAvailable": "2026-11-10",
+  "canonicalRelationshipStart": "2026-06-08",
+  "beats": [
+    {
+      "id": "origami",
+      "mechanic": "Arrastar duas pontas para dobrar uma folha; alternativa por botão",
+      "visual": "Origami muda de forma em 3 etapas, com papel, dobras e personagens"
+    },
+    {
+      "id": "flight",
+      "mechanic": "Guiar avião com toque arrastável, teclado ou controles subir/descer; colisões, vento e coleta",
+      "visual": "Céu transiciona do entardecer à noite, nuvens, luzes, prédios em paralaxe, pássaros e estrelas"
+    },
+    {
+      "id": "arrival",
+      "mechanic": "Chegar ao outro lado da cidade",
+      "visual": "Avião pousa na mão do Lil; Ander se aproxima e eles se abraçam; dois gatos e plantas em movimento"
+    },
+    {
+      "id": "reward",
+      "mechanic": "Registrar pontuação máxima e permitir repetir sem perda de histórico",
+      "visual": "Cena final e certificado de voo com estrelas coletadas"
+    }
+  ],
+  "acceptance": [
+    "Acesso direto sem login",
+    "Sem textos extensos bloqueando a interação",
+    "60 FPS aspiracional, verificar no dispositivo físico",
+    "Sem fatos íntimos inventados",
+    "Navegação mobile e desktop",
+    "Botões acessíveis para ações gestuais"
+  ],
+  "assets": "Desenhos criados diretamente no Canvas por JS/CSS, sem imagens privadas"
+}
