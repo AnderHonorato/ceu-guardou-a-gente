@@ -1,0 +1,51 @@
+{
+  "id": "2026-11-09",
+  "version": 1,
+  "date": "2026-11-09",
+  "timezone": "America/Sao_Paulo",
+  "title": "Depois daquela noite",
+  "kind": "memoria_autorizada",
+  "location": "Ambientes domésticos ilustrativos; não é um mapa da residência",
+  "context": "Relato fornecido por Ander em 9 de novembro de 2026, com autorização para virar uma cena do presente público.",
+  "acts": [
+    {
+      "id": "amanhecer",
+      "action": "Abrir a cortina",
+      "fact": "Depois de uma discussão na noite anterior, dormiram afastados. Quando Ander acordou, Lil o abraçava porque sentiu falta.",
+      "animation": "Luz entra, cortinas se abrem, Lil se aproxima sob a coberta."
+    },
+    {
+      "id": "conchinha",
+      "action": "Virar e abraçar",
+      "fact": "Ander gostou de acordar abraçado e retribuiu fazendo conchinha.",
+      "animation": "Rostos giram, braços se aproximam, respiração e corações."
+    },
+    {
+      "id": "trabalho",
+      "action": "Preparar mochila",
+      "fact": "Ander precisou se levantar para trabalhar.",
+      "animation": "Arrastar objetos, mochila recebe itens, Ander caminha até a porta."
+    },
+    {
+      "id": "video",
+      "action": "Assistir a pequenos vídeos",
+      "fact": "Ao voltar, estavam tranquilos assistindo ao YouTube.",
+      "animation": "Três clipes ficcionais ilustrados, sofá e gatos em movimento."
+    },
+    {
+      "id": "noite",
+      "action": "Criar uma atmosfera acolhedora",
+      "fact": "À noite, tiveram um momento romântico íntimo.",
+      "animation": "Abaixar a luz, fechar cortina, abraçar, transição discreta para estrelas."
+    }
+  ],
+  "contentPolicy": {
+    "noExplicitIntimacy": true,
+    "noPersonalAddresses": true,
+    "noMedicalDetails": true,
+    "noPrivateDiaryDump": true
+  },
+  "sourceOfTruth": "User-supplied on 2026-11-09",
+  "access": "Disponível a partir da data no fuso America/Sao_Paulo",
+  "preservedFinal": "O especial de 8 de novembro permanece acessível."
+}

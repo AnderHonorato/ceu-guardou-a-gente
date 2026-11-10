@@ -1,0 +1,28 @@
+name: Qualidade e segurança - CI
+on:
+  push:
+    branches: [main, "episode-*", "feature-*"]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  quality:
+    name: Sintaxe, integridade e regressões estáticas
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validar módulos JS
+        shell: bash
+        run: |
+          set -euo pipefail
+          find . -maxdepth 2 -type f \( -name '*.js' -o -name '*.mjs' \) -not -path './node_modules/*' -print0 |
+            while IFS= read -r -d '' file; do
+              node --check "$file"
+            done
+      - name: Testes estáticos do jogo
+        run: node --test tests/verify-project.mjs

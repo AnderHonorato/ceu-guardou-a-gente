@@ -12,3 +12,8 @@ capture-og.cjs
 corrigir-datas.cjs
 node_modules/
 *.log
+
+# Arquivos de QA locais e capturas (não publicáveis)
+daily-*.png
+test-daily-episode.cjs
+daily-gesture-smoke.cjs

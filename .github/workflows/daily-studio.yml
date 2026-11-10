@@ -1,0 +1,63 @@
+name: Estúdio Indie - planejamento diário
+on:
+  schedule:
+    # 20h em São Paulo (UTC-3). O agendamento do GitHub pode sofrer atrasos.
+    - cron: "0 23 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  daily-production:
+    if: github.repository == 'AnderHonorato/ceu-guardou-a-gente'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Abrir ciclo de produção sem duplicatas
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const date = new Intl.DateTimeFormat("en-CA", {
+              timeZone: "America/Sao_Paulo",
+              year: "numeric", month: "2-digit", day: "2-digit"
+            }).format(new Date());
+            const title = "[Estúdio Indie] Ciclo diário " + date;
+            const { data } = await github.rest.issues.listForRepo({
+              ...context.repo, state: "all", per_page: 100
+            });
+            if (data.some(issue => issue.title === title)) {
+              core.info("O ciclo de " + date + " já existe.");
+              return;
+            }
+            const task = [
+              "# Estúdio Indie — ciclo " + date,
+              "",
+              "## Direção de jogo / narrativa",
+              "- [ ] Rever histórico do GitHub e jogo publicado; não repetir mecânicas.",
+              "- [ ] Criar UMA cena visual nova e marcante para " + date + ", quando houver contexto autorizado.",
+              "- [ ] Tratar futuro e cenas imaginadas como FICÇÃO; não presumir fatos reais do casal.",
+              "- [ ] Manter 08/06/2026 como início e especial 08/11/2026 preservado.",
+              "- [ ] Planejar animação (movimento de personagens/objetos), interações físicas e conclusão recompensadora.",
+              "",
+              "## Engenharia e QA",
+              "- [ ] Definir critérios de aceite e atualizar docs/GDD.md.",
+              "- [ ] Implementar em branch; revisar código, input/touch, estado, segurança, desempenho e acessibilidade.",
+              "- [ ] Executar CI, teste real de gestos no mobile e desktop, e verificar console sem erros.",
+              "- [ ] Validar o deploy preview antes de integrar no main; manter rollback.",
+              "",
+              "## Publicação e backup",
+              "- [ ] Atualizar GitHub e changelog após revisão.",
+              "- [ ] Confirmar link público Vercel sem login, inclusive assets e jogabilidade.",
+              "- [ ] Criar arquivo ZIP da release, guardar no Google Drive autorizado e conferir integridade.",
+              "- [ ] Registrar resultados, URLs e o que NÃO foi concluído.",
+              "",
+              "## Privacidade",
+              "Nunca publicar banco do Enlace, mensagens privadas, dados de saúde, endereços ou conteúdo íntimo explícito.",
+              "Gatos: Cookie (Ander) e dois do Lil, sem inventar nomes.",
+              "",
+              "**Nota:** esta rotina abre e acompanha o ciclo no GitHub; a criação e entrega de código ainda dependem de uma execução de agente/desenvolvedor com acesso autorizado. Não declarar implementação automática que não ocorreu."
+            ].join("\n");
+            const created = await github.rest.issues.create({
+              ...context.repo, title, body: task
+            });
+            core.info("Ciclo criado: " + created.data.html_url);
