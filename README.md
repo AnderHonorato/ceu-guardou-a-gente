@@ -46,3 +46,7 @@ Datas: o início em 8/6 segue o informado pelo Ander, mesmo que algumas anotaç�
 A experiência agora inclui uma camada visual dedicada (`play-scenes.js`, `play-games.js`, `play-upgrade.js`, `play-upgrade.css`). Em cada interior o personagem pode caminhar, interagir com pontos visuais e jogar desafios gestuais diferentes. Entre os desafios: arrastar compras ao carrinho, brincar com Cookie e os gatinhos do Lil, montar um filme deslizando a fita, capturar luzinhas em movimento, rebater corações, ajustar a iluminação e cortina do quarto, desenhar latte art, acertar notas musicais, organizar selos de uma carta, preparar comida na panela e fotografar com enquadramento móvel.
 
 A conclusão gera uma cena 2D com Ander e Lil se aproximando e salva uma conquista no armazenamento local do navegador. Os textos das lembranças só aparecem ao interagir com objetos. A base do diário Enlace não é lida pelo site público.
+
+
+## Episódio 10/11 — O recado que aprendeu a voar
+Aventura **imaginada para jogar**, não acontecimento real alegado. Dobre o papel arrastando as asas, guie o avião de Ander por uma cidade animada com vento, pássaros, coleta de estrelas e paralaxe, e entregue a carta a Lil. Inclui recompensa animada, três gatos, pontuação máxima local e controles de toque/teclado. Link direto: https://ceu-guardou-a-gente.vercel.app/?episodio=2026-11-10

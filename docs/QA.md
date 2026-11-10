@@ -14,3 +14,6 @@ Executado em Chrome headless/Puppeteer no PC autorizado com viewport **390×844*
 
 ## CI
 `node --check` para todos os módulos JS/MJS e `node --test tests/verify-project.mjs` para integridade de recursos. Falta integrar Playwright E2E ao GitHub Actions: listado no roadmap, não declarar teste visual automático de CI antes de implementá-lo.
+
+## 10/11 — Verificações necessárias
+Testar duas dobras de papel por arrastar; voo guiado por toque; coleta/collision; progresso, chegada e save; teclado, botões, smartphone retrato e desktop; verificar console e acesso público sem login. Validar história classificada como ficcional.

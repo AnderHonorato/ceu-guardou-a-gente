@@ -44,3 +44,20 @@ test("a rotina de desenvolvimento exige validação em vez de autopublicar conte
   assert.match(workflow,/issues\.create/);
   assert.doesNotMatch(workflow,/force:\s*true/);
 });
+
+test("episódio 10/11 oferece aventura de voo gestual sem inventar lembranças",()=>{
+ const js=read("daily-2026-11-10.js");
+ const html=read("index.html");
+ assert.match(js,/2026-11-10/);
+ assert.match(js,/CENA IMAGINADA PARA JOGAR/);
+ assert.match(js,/function fold\(/);
+ assert.match(js,/function pointerMove\(/);
+ assert.match(js,/function drawHazards\(/);
+ assert.match(js,/function drawFlight\(/);
+ assert.match(js,/function drawFinal\(/);
+ assert.ok(html.includes('daily-2026-11-10.js'));
+ assert.ok(html.includes('daily-2026-11-10.css'));
+ const story=JSON.parse(read("stories/2026-11-10.json"));
+ assert.equal(story.kind,"cena_imaginada_para_jogar");
+ assert.equal(story.date,"2026-11-10");
+});

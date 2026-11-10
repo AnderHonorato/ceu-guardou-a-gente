@@ -31,3 +31,8 @@
 - [ ] Novos episódios narrativos *únicos*, aprovados e publicados por data.
 
 **Importante:** o GitHub Actions diário abre a pauta, não substitui um agente de implementação. A entrega real depende de desenvolvimento, revisão e testes.
+
+## 10/11 — Episódio do recado voador
+- [x] Origami gestual, voo, céu animado e paralaxe, pássaros, estrelas, casal e gatos.
+- [ ] Testar a jogabilidade em Android físico e registrar FPS real.
+- [ ] Melhorar episódios a partir de narrativas reais autorizadas pelo casal; não inventar fatos.
