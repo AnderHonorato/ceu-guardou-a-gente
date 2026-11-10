@@ -1,0 +1,61 @@
+/* Estúdio Indie — Episódio 09/11: direção visual 2D própria, responsiva e gestual. */
+.daily-launch{display:flex;align-items:center;justify-content:space-between;gap:11px;margin:11px auto 0;width:min(100%,360px);padding:11px 12px;border:3px solid #3b4d5b;background:#a4c7b9;color:#304654;box-shadow:4px 4px #385466;cursor:pointer;text-align:left}
+.daily-launch>span:nth-child(2){flex:1;display:flex;flex-direction:column;gap:4px}
+.daily-launch small{font:700 10px "Pixelify Sans",monospace;color:#507166;letter-spacing:.08em}
+.daily-launch strong{font:700 20px/1.03 "Pixelify Sans",monospace;color:#263e51}
+.daily-launch-mark{font:700 32px "Pixelify Sans",monospace;color:#f2ecbf;line-height:1}
+.daily-launch>span:last-child{font:700 25px "Pixelify Sans",monospace}
+.daily-launch:hover{background:#b6d7c7;transform:translateY(-2px)}
+.daily-launch:disabled{opacity:.45}
+.daily-after-ending{width:min(100%,385px);border:3px solid #f2dec2;background:#90bba6;color:#2d4c53;padding:12px 15px;box-shadow:4px 4px #263c52;font:700 17px/1.2 "Pixelify Sans",monospace;cursor:pointer}
+.daily-episode{position:absolute;z-index:95;inset:0;overflow:hidden;background:#262d4c;color:#fff0df;isolation:isolate}
+.daily-episode[hidden]{display:none!important}
+#dailyCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;image-rendering:pixelated;image-rendering:crisp-edges;cursor:grab}
+#dailyCanvas:active{cursor:grabbing}
+.daily-episode::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.095;background:repeating-linear-gradient(0deg,#0000 0 3px,#192638 3px 4px);mix-blend-mode:multiply}
+.daily-topbar{position:absolute;z-index:15;top:0;left:0;right:0;display:flex;align-items:flex-start;gap:12px;justify-content:space-between;padding:calc(15px + env(safe-area-inset-top)) clamp(15px,4vw,42px) 22px;background:linear-gradient(180deg,#141e3dc7 0%,#141e3d00 100%)}
+.daily-leave{padding:9px 11px;border:2px solid #f3d9b4;background:#273b54db;color:#fff0da;font:700 14px "Pixelify Sans",monospace;box-shadow:3px 3px #192c40;white-space:nowrap;cursor:pointer}
+.daily-heading{text-align:right;flex:1;display:flex;flex-direction:column;gap:4px}
+.daily-heading small{font:700 11px "Pixelify Sans",monospace;letter-spacing:.09em;color:#ffc9a1}
+.daily-heading strong{font:700 clamp(18px,2.7vw,32px)/1 "Pixelify Sans",monospace;color:#fff0d5;letter-spacing:-.025em;text-shadow:2px 3px #263648}
+.daily-count{font:700 14px "Pixelify Sans",monospace;color:#ffe1bd;border:2px solid #e9cbaa99;padding:7px 6px;background:#2b3956a9;white-space:nowrap}
+.daily-progress{position:absolute;top:0;left:0;right:0;z-index:18;display:grid;grid-template-columns:repeat(6,1fr);gap:5px;padding:0 7px;height:4px}
+.daily-progress span{background:#e9d1b342}
+.daily-progress span.active{background:#fff0cb;box-shadow:0 0 9px #ffe6b7}
+.daily-floating{position:absolute;z-index:12;top:calc(114px + env(safe-area-inset-top));left:50%;transform:translateX(-50%) translateY(-8px);width:min(500px,calc(100% - 34px));padding:12px 15px;text-align:center;font:700 15px/1.25 "Pixelify Sans",monospace;color:#f8efcf;background:#2c3c53e3;border:2px solid #f1dcba8c;box-shadow:4px 5px #1a2a4359;opacity:0;pointer-events:none;transition:transform .25s,opacity .25s}
+.daily-floating.visible{opacity:1;transform:translateX(-50%) translateY(0)}
+.daily-scene-guide{position:absolute;z-index:12;left:50%;bottom:calc(109px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(540px,calc(100% - 28px));padding:12px 13px;text-align:center;letter-spacing:.025em;color:#ffeed1;background:#192e48dc;border:2px solid #ffe5c6ad;font:700 clamp(12px,2vw,16px)/1.2 "Pixelify Sans",monospace;pointer-events:none}
+.daily-bottom{position:absolute;z-index:17;left:0;right:0;bottom:0;padding:12px clamp(15px,4vw,45px) calc(19px + env(safe-area-inset-bottom));background:linear-gradient(#15274100,#172e44ef 45%,#172e44 100%);display:flex;gap:11px;justify-content:space-between;align-items:center;min-height:86px}
+.daily-dots{font:700 26px "Pixelify Sans",monospace;color:#f6d1b9;letter-spacing:.3em;text-shadow:0 0 20px #e9b9b9}
+.daily-assist,.daily-next{border:3px solid #273c55;min-height:52px;padding:10px 15px;box-shadow:4px 4px #17283d;font:700 17px "Pixelify Sans",monospace;cursor:pointer;white-space:nowrap}
+.daily-assist{background:#f1d5b0;color:#3c475a}
+.daily-next{background:#a8d0b4;color:#2a4a54}
+.daily-next span{padding-left:12px}
+.daily-assist:hover,.daily-next:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.daily-end{position:absolute;z-index:16;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100% - 34px));padding:25px 25px 22px;text-align:center;color:#3c465b;background:linear-gradient(160deg,#fff0d9,#f0d1b7);border:5px solid #33495b;box-shadow:9px 11px #192b3d9c;max-height:calc(100% - 140px);overflow-y:auto}
+.daily-end[hidden]{display:none!important}
+.daily-end-decoration{color:#bd7884;font:700 35px "Pixelify Sans",monospace;letter-spacing:.19em;animation:daily-heart 2s ease-in-out infinite alternate}
+.daily-end h2{font:700 clamp(44px,8vw,78px)/.85 "Pixelify Sans",monospace;margin:20px 0 19px;letter-spacing:-.04em;color:#354b5d}
+.daily-end h2 em{font-style:normal;color:#c67579}
+.daily-end p{max-width:415px;margin:0 auto 20px;color:#626271;font-size:14px;line-height:1.7}
+.daily-end-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.daily-end-actions button{min-height:44px;border:2px solid #364c5a;box-shadow:3px 3px #bea892;background:#f2b9a3;color:#334856;padding:10px 13px;font:700 14px/1.1 "Pixelify Sans",monospace;cursor:pointer}
+.daily-end-actions button:last-child{background:#b6d4bd}
+.daily-end-sign{display:block;margin-top:19px;color:#a47775;font:700 12px "Pixelify Sans",monospace}
+@keyframes daily-heart{from{transform:scale(.93);opacity:.7}to{transform:scale(1.1);opacity:1}}
+@media(max-width:700px){
+ .daily-launch{min-height:68px;padding:9px 9px;width:100%;margin:13px 0 2px}
+ .daily-launch small{font-size:9px}.daily-launch strong{font-size:18px}.daily-launch-mark{font-size:27px}
+ .daily-topbar{gap:8px;padding:calc(11px + env(safe-area-inset-top)) 13px 17px}
+ .daily-leave{font-size:12px;padding:7px}
+ .daily-heading strong{font-size:clamp(16px,4.6vw,24px)}.daily-heading small{font-size:9px}.daily-count{font-size:11px}
+ .daily-floating{top:calc(93px + env(safe-area-inset-top));font-size:12px;padding:9px 12px}
+ .daily-scene-guide{font-size:12px;bottom:calc(94px + env(safe-area-inset-bottom));padding:10px}
+ .daily-bottom{padding:8px 13px calc(17px + env(safe-area-inset-bottom));min-height:79px}
+ .daily-dots{font-size:20px;letter-spacing:.08em}
+ .daily-assist,.daily-next{font-size:14px;min-height:50px;padding:8px 11px}
+ .daily-end{padding:17px 16px;max-height:calc(100% - 100px)}
+ .daily-end p{font-size:12px;line-height:1.5}
+}
+@media(max-width:365px){.daily-dots{display:none}.daily-assist,.daily-next{width:100%;white-space:normal}}
+@media(prefers-reduced-motion:reduce){.daily-end-decoration{animation:none}.daily-floating{transition:none}}
